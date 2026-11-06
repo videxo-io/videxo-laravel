@@ -1,0 +1,1041 @@
+{
+  "note": "Generated from the Videxo API's examples. Do not edit: change the API and generate again.",
+  "jobs": {
+    "queued": {
+      "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+      "state": "queued",
+      "kind": "operations",
+      "operation": "transcode",
+      "spec": {
+        "inputs": {
+          "source": {
+            "url": "https://videxo.io/samples/talk.mp4"
+          }
+        },
+        "outputs": [
+          {
+            "name": "video",
+            "type": "video",
+            "preset": "web-720p",
+            "input": "source",
+            "filename": "talk-720p.mp4",
+            "format": "mp4",
+            "resize": {
+              "width": 1280,
+              "height": 720,
+              "fit": "contain",
+              "enlarge": false
+            },
+            "video": {
+              "codec": "h264",
+              "crf": 23,
+              "encoder_preset": "veryfast",
+              "pixel_format": "yuv420p",
+              "faststart": true
+            },
+            "audio": {
+              "codec": "aac",
+              "bitrate": "128k"
+            }
+          }
+        ]
+      },
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "input_files": {
+        "in_source": "https://videxo.io/samples/talk.mp4"
+      },
+      "output_files": {
+        "out_video": "talk-720p.mp4"
+      },
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "webhook_url": null,
+      "metadata": {
+        "order": "1234"
+      },
+      "progress": null,
+      "error": null,
+      "outputs": [],
+      "usage": null,
+      "created_at": "2026-11-04T12:00:00.000Z",
+      "started_at": null,
+      "finished_at": null
+    },
+    "running": {
+      "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+      "state": "running",
+      "kind": "operations",
+      "operation": "transcode",
+      "spec": {
+        "inputs": {
+          "source": {
+            "url": "https://videxo.io/samples/talk.mp4"
+          }
+        },
+        "outputs": [
+          {
+            "name": "video",
+            "type": "video",
+            "preset": "web-720p",
+            "input": "source",
+            "filename": "talk-720p.mp4",
+            "format": "mp4",
+            "resize": {
+              "width": 1280,
+              "height": 720,
+              "fit": "contain",
+              "enlarge": false
+            },
+            "video": {
+              "codec": "h264",
+              "crf": 23,
+              "encoder_preset": "veryfast",
+              "pixel_format": "yuv420p",
+              "faststart": true
+            },
+            "audio": {
+              "codec": "aac",
+              "bitrate": "128k"
+            }
+          }
+        ]
+      },
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "input_files": {
+        "in_source": "https://videxo.io/samples/talk.mp4"
+      },
+      "output_files": {
+        "out_video": "talk-720p.mp4"
+      },
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "webhook_url": null,
+      "metadata": {
+        "order": "1234"
+      },
+      "progress": null,
+      "error": null,
+      "outputs": [],
+      "usage": null,
+      "created_at": "2026-11-04T12:00:00.000Z",
+      "started_at": "2026-11-04T12:00:04.000Z",
+      "finished_at": null
+    },
+    "succeeded": {
+      "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+      "state": "succeeded",
+      "kind": "operations",
+      "operation": "transcode",
+      "spec": {
+        "inputs": {
+          "source": {
+            "url": "https://videxo.io/samples/talk.mp4"
+          }
+        },
+        "outputs": [
+          {
+            "name": "video",
+            "type": "video",
+            "preset": "web-720p",
+            "input": "source",
+            "filename": "talk-720p.mp4",
+            "format": "mp4",
+            "resize": {
+              "width": 1280,
+              "height": 720,
+              "fit": "contain",
+              "enlarge": false
+            },
+            "video": {
+              "codec": "h264",
+              "crf": 23,
+              "encoder_preset": "veryfast",
+              "pixel_format": "yuv420p",
+              "faststart": true
+            },
+            "audio": {
+              "codec": "aac",
+              "bitrate": "128k"
+            }
+          }
+        ]
+      },
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "input_files": {
+        "in_source": "https://videxo.io/samples/talk.mp4"
+      },
+      "output_files": {
+        "out_video": "talk-720p.mp4"
+      },
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "webhook_url": null,
+      "metadata": {
+        "order": "1234"
+      },
+      "progress": 1,
+      "error": null,
+      "outputs": [
+        {
+          "alias": "out_video",
+          "name": "video",
+          "filename": "talk-720p.mp4",
+          "size_bytes": 300000000,
+          "sha256": "9f2c4e1a7b3d5f60c8e2a4b6d8f0e1c3a5b7d9f1e3c5a7b9d1f3e5c7a9b1d3f5",
+          "content_type": "video/mp4",
+          "expires_at": "2026-11-05T12:01:09.000Z",
+          "download_url": "https://api.videxo.io/v1/files/job_3k9x0c2mfq8w1n7r5t4b6v2z/out_video?account=acc_example&expires=1793797269&signature=example",
+          "download_url_expires_at": "2026-11-04T13:01:09.000Z",
+          "deleted_at": null
+        }
+      ],
+      "usage": {
+        "seconds": 61,
+        "input_bytes": 1200000000,
+        "output_bytes": 300000000,
+        "credits": 106
+      },
+      "created_at": "2026-11-04T12:00:00.000Z",
+      "started_at": "2026-11-04T12:00:04.000Z",
+      "finished_at": "2026-11-04T12:01:09.000Z"
+    },
+    "failed": {
+      "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+      "state": "failed",
+      "kind": "operations",
+      "operation": "transcode",
+      "spec": {
+        "inputs": {
+          "source": {
+            "url": "https://videxo.io/samples/talk.mp4"
+          }
+        },
+        "outputs": [
+          {
+            "name": "video",
+            "type": "video",
+            "preset": "web-720p",
+            "input": "source",
+            "filename": "talk-720p.mp4",
+            "format": "mp4",
+            "resize": {
+              "width": 1280,
+              "height": 720,
+              "fit": "contain",
+              "enlarge": false
+            },
+            "video": {
+              "codec": "h264",
+              "crf": 23,
+              "encoder_preset": "veryfast",
+              "pixel_format": "yuv420p",
+              "faststart": true
+            },
+            "audio": {
+              "codec": "aac",
+              "bitrate": "128k"
+            }
+          }
+        ]
+      },
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "input_files": {
+        "in_source": "https://videxo.io/samples/talk.mp4"
+      },
+      "output_files": {
+        "out_video": "talk-720p.mp4"
+      },
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "webhook_url": null,
+      "metadata": {
+        "order": "1234"
+      },
+      "progress": null,
+      "error": {
+        "code": "input_unreachable",
+        "reason": "http_status",
+        "message": "The server of the URL answered with an error.",
+        "retryable": false,
+        "log_tail": null
+      },
+      "outputs": [],
+      "usage": {
+        "seconds": 0,
+        "input_bytes": 0,
+        "output_bytes": 0,
+        "credits": 0
+      },
+      "created_at": "2026-11-04T12:00:00.000Z",
+      "started_at": "2026-11-04T12:00:04.000Z",
+      "finished_at": "2026-11-04T12:00:05.000Z"
+    }
+  },
+  "jobs_job": {
+    "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+    "state": "queued",
+    "kind": "operations",
+    "operation": null,
+    "spec": {
+      "inputs": {
+        "talk": {
+          "url": "https://videxo.io/samples/talk.mp4"
+        }
+      },
+      "outputs": [
+        {
+          "name": "web",
+          "type": "video",
+          "preset": "web-720p",
+          "input": "talk",
+          "filename": "web.mp4",
+          "format": "mp4",
+          "resize": {
+            "width": 1280,
+            "height": 720,
+            "fit": "contain",
+            "enlarge": false
+          },
+          "video": {
+            "codec": "h264",
+            "crf": 23,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "128k"
+          }
+        },
+        {
+          "name": "poster",
+          "type": "image",
+          "preset": "poster",
+          "input": "talk",
+          "filename": "poster.jpg",
+          "format": "jpg",
+          "resize": {
+            "width": 1280,
+            "height": 720,
+            "fit": "contain",
+            "enlarge": false
+          },
+          "at": "auto",
+          "quality": "high"
+        }
+      ]
+    },
+    "command": "-i {{in_talk}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_web}} -map 0:v:0 -vf \"thumbnail=300,scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -frames:v 1 -q:v 2 {{out_poster}}",
+    "input_files": {
+      "in_talk": "https://videxo.io/samples/talk.mp4"
+    },
+    "output_files": {
+      "out_web": "web.mp4",
+      "out_poster": "poster.jpg"
+    },
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart web.mp4 -map 0:v:0 -vf 'thumbnail=300,scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -frames:v 1 -q:v 2 poster.jpg",
+    "webhook_url": null,
+    "metadata": {
+      "order": "1234"
+    },
+    "progress": null,
+    "error": null,
+    "outputs": [],
+    "usage": null,
+    "created_at": "2026-11-04T12:00:00.000Z",
+    "started_at": null,
+    "finished_at": null
+  },
+  "command_job": {
+    "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+    "state": "queued",
+    "kind": "command",
+    "operation": null,
+    "spec": null,
+    "command": "-i {{in_video}} -vf scale=-2:720 -c:v libx264 -crf 23 -c:a copy {{out_main}}",
+    "input_files": {
+      "in_video": "https://videxo.io/samples/talk.mp4"
+    },
+    "output_files": {
+      "out_main": "talk-720p.mp4"
+    },
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -vf scale=-2:720 -c:v libx264 -crf 23 -c:a copy talk-720p.mp4",
+    "webhook_url": null,
+    "metadata": {
+      "order": "1234"
+    },
+    "progress": null,
+    "error": null,
+    "outputs": [],
+    "usage": null,
+    "created_at": "2026-11-04T12:00:00.000Z",
+    "started_at": null,
+    "finished_at": null
+  },
+  "compile_result": {
+    "spec": {
+      "inputs": {
+        "source": {
+          "url": "https://videxo.io/samples/talk.mp4"
+        }
+      },
+      "outputs": [
+        {
+          "format": "mp4",
+          "resize": {
+            "width": 1280,
+            "height": 720,
+            "fit": "contain",
+            "enlarge": false
+          },
+          "video": {
+            "codec": "h264",
+            "crf": 23,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "128k"
+          },
+          "preset": "web-720p",
+          "name": "video",
+          "type": "video",
+          "input": "source",
+          "filename": "video.mp4"
+        }
+      ]
+    },
+    "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+    "input_files": {
+      "in_source": "https://videxo.io/samples/talk.mp4"
+    },
+    "output_files": {
+      "out_video": "video.mp4"
+    },
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart video.mp4"
+  },
+  "presets": {
+    "data": [
+      {
+        "name": "web-720p",
+        "type": "video",
+        "description": "MP4 for the web: H.264 at CRF 23 within 1280 by 720 (never enlarged), AAC 128k, fast start.",
+        "deprecated": false,
+        "output": {
+          "format": "mp4",
+          "resize": {
+            "width": 1280,
+            "height": 720,
+            "fit": "contain",
+            "enlarge": false
+          },
+          "video": {
+            "codec": "h264",
+            "crf": 23,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "128k"
+          }
+        }
+      },
+      {
+        "name": "web-1080p",
+        "type": "video",
+        "description": "MP4 for the web: H.264 at CRF 22 within 1920 by 1080 (never enlarged), AAC 160k, fast start.",
+        "deprecated": false,
+        "output": {
+          "format": "mp4",
+          "resize": {
+            "width": 1920,
+            "height": 1080,
+            "fit": "contain",
+            "enlarge": false
+          },
+          "video": {
+            "codec": "h264",
+            "crf": 22,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "160k"
+          }
+        }
+      },
+      {
+        "name": "social-vertical",
+        "type": "video",
+        "description": "Vertical 1080 by 1920 MP4, cropped at the centre, 30 fps, keeping the sound when there is one.",
+        "deprecated": false,
+        "output": {
+          "format": "mp4",
+          "resize": {
+            "width": 1080,
+            "height": 1920,
+            "fit": "cover",
+            "anchor": "center"
+          },
+          "fps": 30,
+          "video": {
+            "codec": "h264",
+            "crf": 23,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "128k"
+          }
+        }
+      },
+      {
+        "name": "square",
+        "type": "video",
+        "description": "Square 1080 by 1080 MP4, cropped at the centre, 30 fps, keeping the sound when there is one.",
+        "deprecated": false,
+        "output": {
+          "format": "mp4",
+          "resize": {
+            "width": 1080,
+            "height": 1080,
+            "fit": "cover",
+            "anchor": "center"
+          },
+          "fps": 30,
+          "video": {
+            "codec": "h264",
+            "crf": 23,
+            "encoder_preset": "veryfast",
+            "pixel_format": "yuv420p",
+            "faststart": true
+          },
+          "audio": {
+            "codec": "aac",
+            "bitrate": "128k"
+          }
+        }
+      },
+      {
+        "name": "podcast-audio",
+        "type": "audio",
+        "description": "MP3 128k stereo at 44.1 kHz, normalised to -16 LUFS with peaks under -1.5 dBTP.",
+        "deprecated": false,
+        "output": {
+          "format": "mp3",
+          "audio": {
+            "codec": "mp3",
+            "bitrate": "128k",
+            "sample_rate": 44100,
+            "channels": 2,
+            "normalize": {
+              "loudness": -16,
+              "true_peak": -1.5,
+              "range": 11
+            }
+          }
+        }
+      },
+      {
+        "name": "gif-preview",
+        "type": "gif",
+        "description": "An animated GIF at most 480 pixels wide at 12 fps with 256 colours: the first 5 seconds unless trim says otherwise.",
+        "deprecated": false,
+        "output": {
+          "format": "gif",
+          "resize": {
+            "width": 480,
+            "enlarge": false
+          },
+          "fps": 12,
+          "colors": 256,
+          "trim": {
+            "start": 0,
+            "duration": 5
+          }
+        }
+      },
+      {
+        "name": "poster",
+        "type": "image",
+        "description": "A JPEG within 1280 by 720 (never enlarged) of the most representative of the first frames, or of the frame at `at`.",
+        "deprecated": false,
+        "output": {
+          "format": "jpg",
+          "at": "auto",
+          "quality": "high",
+          "resize": {
+            "width": 1280,
+            "height": 720,
+            "fit": "contain",
+            "enlarge": false
+          }
+        }
+      }
+    ]
+  },
+  "fonts": {
+    "data": [
+      {
+        "id": "inter",
+        "family": "Inter",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "inter-bold",
+        "family": "Inter",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "roboto",
+        "family": "Roboto",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "roboto-bold",
+        "family": "Roboto",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "open-sans",
+        "family": "Open Sans",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "open-sans-bold",
+        "family": "Open Sans",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "montserrat",
+        "family": "Montserrat",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "montserrat-bold",
+        "family": "Montserrat",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "poppins",
+        "family": "Poppins",
+        "weight": 400,
+        "scripts": [
+          "latin"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "poppins-bold",
+        "family": "Poppins",
+        "weight": 700,
+        "scripts": [
+          "latin"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "oswald",
+        "family": "Oswald",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "oswald-bold",
+        "family": "Oswald",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "bebas-neue",
+        "family": "Bebas Neue",
+        "weight": 400,
+        "scripts": [
+          "latin"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "playfair-display",
+        "family": "Playfair Display",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "playfair-display-bold",
+        "family": "Playfair Display",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "merriweather",
+        "family": "Merriweather",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "merriweather-bold",
+        "family": "Merriweather",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "noto-sans",
+        "family": "Noto Sans",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "noto-sans-bold",
+        "family": "Noto Sans",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "noto-serif",
+        "family": "Noto Serif",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "noto-serif-bold",
+        "family": "Noto Serif",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "jetbrains-mono",
+        "family": "JetBrains Mono",
+        "weight": 400,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      },
+      {
+        "id": "jetbrains-mono-bold",
+        "family": "JetBrains Mono",
+        "weight": 700,
+        "scripts": [
+          "latin",
+          "greek",
+          "cyrillic"
+        ],
+        "license": "OFL-1.1"
+      }
+    ]
+  },
+  "webhook": {
+    "type": "job.succeeded",
+    "timestamp": "2026-11-04T12:01:09.000Z",
+    "data": {
+      "id": "job_3k9x0c2mfq8w1n7r5t4b6v2z",
+      "state": "succeeded",
+      "kind": "operations",
+      "operation": "transcode",
+      "spec": {
+        "inputs": {
+          "source": {
+            "url": "https://videxo.io/samples/talk.mp4"
+          }
+        },
+        "outputs": [
+          {
+            "name": "video",
+            "type": "video",
+            "preset": "web-720p",
+            "input": "source",
+            "filename": "talk-720p.mp4",
+            "format": "mp4",
+            "resize": {
+              "width": 1280,
+              "height": 720,
+              "fit": "contain",
+              "enlarge": false
+            },
+            "video": {
+              "codec": "h264",
+              "crf": 23,
+              "encoder_preset": "veryfast",
+              "pixel_format": "yuv420p",
+              "faststart": true
+            },
+            "audio": {
+              "codec": "aac",
+              "bitrate": "128k"
+            }
+          }
+        ]
+      },
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "input_files": {
+        "in_source": "https://videxo.io/samples/talk.mp4"
+      },
+      "output_files": {
+        "out_video": "talk-720p.mp4"
+      },
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "webhook_url": null,
+      "metadata": {
+        "order": "1234"
+      },
+      "progress": 1,
+      "error": null,
+      "outputs": [
+        {
+          "alias": "out_video",
+          "name": "video",
+          "filename": "talk-720p.mp4",
+          "size_bytes": 300000000,
+          "sha256": "9f2c4e1a7b3d5f60c8e2a4b6d8f0e1c3a5b7d9f1e3c5a7b9d1f3e5c7a9b1d3f5",
+          "content_type": "video/mp4",
+          "expires_at": "2026-11-05T12:01:09.000Z",
+          "download_url": "https://api.videxo.io/v1/files/job_3k9x0c2mfq8w1n7r5t4b6v2z/out_video?account=acc_example&expires=1793797269&signature=example",
+          "download_url_expires_at": "2026-11-04T13:01:09.000Z",
+          "deleted_at": null
+        }
+      ],
+      "usage": {
+        "seconds": 61,
+        "input_bytes": 1200000000,
+        "output_bytes": 300000000,
+        "credits": 106
+      },
+      "created_at": "2026-11-04T12:00:00.000Z",
+      "started_at": "2026-11-04T12:00:04.000Z",
+      "finished_at": "2026-11-04T12:01:09.000Z"
+    }
+  },
+  "problems": {
+    "authentication_failed": {
+      "type": "https://videxo.io/docs/errors#authentication_failed",
+      "title": "The API key is missing, malformed, unknown, revoked or expired.",
+      "status": 401,
+      "detail": "The key is malformed, unknown or deleted.",
+      "code": "authentication_failed",
+      "reason": "invalid_api_key",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "permission_denied": {
+      "type": "https://videxo.io/docs/errors#permission_denied",
+      "title": "The request is not allowed.",
+      "status": 403,
+      "detail": "The request is not allowed.",
+      "code": "permission_denied",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "invalid_request": {
+      "type": "https://videxo.io/docs/errors#invalid_request",
+      "title": "The request is not valid. `errors` lists each field that is wrong.",
+      "status": 400,
+      "detail": "preset: Unknown preset.",
+      "code": "invalid_request",
+      "reason": "invalid_fields",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z",
+      "errors": [
+        {
+          "pointer": "#/preset",
+          "detail": "Unknown preset."
+        }
+      ]
+    },
+    "command_invalid": {
+      "type": "https://videxo.io/docs/errors#command_invalid",
+      "title": "The command contains unsupported or invalid arguments. `problems` lists each one.",
+      "status": 400,
+      "detail": "The option -vtag is not accepted.",
+      "code": "command_invalid",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z",
+      "problems": [
+        {
+          "code": "option_unknown",
+          "message": "The option -vtag is not accepted.",
+          "option": "-vtag"
+        }
+      ]
+    },
+    "not_found": {
+      "type": "https://videxo.io/docs/errors#not_found",
+      "title": "There is no such resource in this account, or no such route.",
+      "status": 404,
+      "detail": "There is no such resource in this account, or no such route.",
+      "code": "not_found",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "conflict": {
+      "type": "https://videxo.io/docs/errors#conflict",
+      "title": "The resource's state does not allow this now.",
+      "status": 409,
+      "detail": "The resource's state does not allow this now.",
+      "code": "conflict",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "resource_expired": {
+      "type": "https://videxo.io/docs/errors#resource_expired",
+      "title": "The file, the upload or the signed link has expired.",
+      "status": 410,
+      "detail": "The file, the upload or the signed link has expired.",
+      "code": "resource_expired",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "limit_exceeded": {
+      "type": "https://videxo.io/docs/errors#limit_exceeded",
+      "title": "A plan or request limit was passed.",
+      "status": 413,
+      "detail": "A plan or request limit was passed.",
+      "code": "limit_exceeded",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "usage_cap_reached": {
+      "type": "https://videxo.io/docs/errors#usage_cap_reached",
+      "title": "The plan's overage cap for this period is reached.",
+      "status": 402,
+      "detail": "The plan's overage cap for this period is reached.",
+      "code": "usage_cap_reached",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "out_of_credits": {
+      "type": "https://videxo.io/docs/errors#out_of_credits",
+      "title": "The prepaid credit balance is at zero.",
+      "status": 402,
+      "detail": "The prepaid credit balance is at zero.",
+      "code": "out_of_credits",
+      "retryable": false,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "rate_limited": {
+      "type": "https://videxo.io/docs/errors#rate_limited",
+      "title": "Too many requests. Try again after the number of seconds in the Retry-After header.",
+      "status": 429,
+      "detail": "Too many requests. Try again after the number of seconds in the Retry-After header.",
+      "code": "rate_limited",
+      "retryable": true,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "service_unavailable": {
+      "type": "https://videxo.io/docs/errors#service_unavailable",
+      "title": "We could not complete this in time, after retrying on our side. Quote the request id to support if it repeats.",
+      "status": 503,
+      "detail": "Part of the service did not answer in time. Quote the request id to support if it repeats.",
+      "code": "service_unavailable",
+      "reason": "temporary",
+      "retryable": true,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    },
+    "internal_error": {
+      "type": "https://videxo.io/docs/errors#internal_error",
+      "title": "Something failed on our side. Quote the request id to support if it repeats.",
+      "status": 500,
+      "detail": "Something failed on our side. Quote the request id to support if it repeats.",
+      "code": "internal_error",
+      "retryable": true,
+      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
+    }
+  }
+}

@@ -1,0 +1,74 @@
+{
+  "name": "videxo/laravel",
+  "description": "Videxo for Laravel: the Videxo API client, a facade and a verified webhook route with events.",
+  "type": "library",
+  "license": "MIT",
+  "keywords": [
+    "videxo",
+    "laravel",
+    "ffmpeg",
+    "video",
+    "transcoding",
+    "webhooks"
+  ],
+  "homepage": "https://videxo.io/docs/sdk/laravel",
+  "support": {
+    "docs": "https://videxo.io/docs/sdk/laravel",
+    "issues": "https://github.com/videxo-io/videxo-laravel/issues",
+    "source": "https://github.com/videxo-io/videxo-laravel"
+  },
+  "authors": [
+    {
+      "name": "Videxo",
+      "email": "oss@videxo.io",
+      "homepage": "https://videxo.io"
+    }
+  ],
+  "require": {
+    "php": "^8.2",
+    "illuminate/contracts": "^12.0 || ^13.0",
+    "illuminate/http": "^12.0 || ^13.0",
+    "illuminate/routing": "^12.0 || ^13.0",
+    "illuminate/support": "^12.0 || ^13.0",
+    "psr/http-client": "^1.0",
+    "psr/http-message": "^1.1 || ^2.0",
+    "videxo/videxo-php": "^0.1"
+  },
+  "require-dev": {
+    "larastan/larastan": "^3.14",
+    "orchestra/testbench": "^10.12 || ^11.3",
+    "phpunit/phpunit": "^11.5"
+  },
+  "autoload": {
+    "psr-4": {
+      "Videxo\\Laravel\\": "src/"
+    }
+  },
+  "autoload-dev": {
+    "psr-4": {
+      "Videxo\\Laravel\\Tests\\": "tests/"
+    }
+  },
+  "extra": {
+    "laravel": {
+      "providers": [
+        "Videxo\\Laravel\\VidexoServiceProvider"
+      ],
+      "aliases": {
+        "Videxo": "Videxo\\Laravel\\Facades\\Videxo"
+      }
+    }
+  },
+  "scripts": {
+    "test": "phpunit",
+    "analyse": "phpstan analyse --no-progress --memory-limit=1G",
+    "check": [
+      "@analyse",
+      "@test"
+    ]
+  },
+  "config": {
+    "sort-packages": true
+  },
+  "minimum-stability": "stable"
+}

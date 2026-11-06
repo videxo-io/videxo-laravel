@@ -1,0 +1,14 @@
+includes:
+  - vendor/larastan/larastan/extension.neon
+
+parameters:
+  level: max
+  paths:
+    - config
+    - routes
+    - src
+    - tests
+  tmpDir: .phpstan.cache
+  phpVersion: 80200
+  # config/videxo.php is the package's config, read by mergeConfigFrom(): env() belongs there.
+  noEnvCallsOutsideOfConfig: false
