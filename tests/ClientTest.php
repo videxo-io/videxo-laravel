@@ -115,4 +115,19 @@ final class ClientTest extends TestCase
         self::assertStringContainsString("env('VIDEXO_API_KEY')", (string) file_get_contents($target));
         unlink($target);
     }
+    public function testTheAdapterShortensBothTimeoutsToTheWaitBudget(): void
+    {
+        Http::preventStrayRequests();
+        Http::fake(static function (Request $request, array $options) {
+            self::assertSame(0.25, $options['timeout']);
+            self::assertSame(0.25, $options['connect_timeout']);
+            self::assertFalse($options['allow_redirects']);
+            return Http::response(self::job('succeeded'));
+        });
+        $http = new \Videxo\Laravel\Http\LaravelHttpClient($this->application()->make(\Illuminate\Http\Client\Factory::class), 60);
+        $request = new \GuzzleHttp\Psr7\Request('GET', self::BASE_URL . '/v1/jobs/job_test');
+        $http->sendRequestWithTimeout($request, 0.25);
+        Http::assertSentCount(1);
+    }
+
 }

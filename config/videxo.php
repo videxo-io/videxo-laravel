@@ -26,6 +26,11 @@ return [
         // Where Videxo posts webhooks. Set to null to register the route yourself.
         'path' => env('VIDEXO_WEBHOOK_PATH', 'webhooks/videxo'),
 
+        // Paths of manually registered webhook routes. Their raw bodies must reach the size and
+        // signature checks before Laravel's global JSON normalization. The automatic path above
+        // is excluded already; list custom paths here when path is null.
+        'raw_body_paths' => [],
+
         // Middleware in front of the signature check, such as a rate limiter. The route has no
         // session or CSRF check: the signature authenticates it.
         'middleware' => [],

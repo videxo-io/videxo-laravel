@@ -32,7 +32,7 @@
     "illuminate/support": "^12.0 || ^13.0",
     "psr/http-client": "^1.0",
     "psr/http-message": "^1.1 || ^2.0",
-    "videxo/videxo-php": "^0.1"
+    "videxo/videxo-php": "^0.1.1"
   },
   "require-dev": {
     "larastan/larastan": "^3.14",

@@ -4,6 +4,7 @@ declare(strict_types=1);
 
 namespace Videxo\Laravel;
 
+use Illuminate\Contracts\Config\Repository;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
 use Illuminate\Foundation\Http\Middleware\TrimStrings;
@@ -58,10 +59,21 @@ final class VidexoServiceProvider extends ServiceProvider
         }
         $this->loadRoutesFrom(__DIR__ . '/../routes/webhook.php');
 
-        // The webhook's body is read once, bounded, by its middleware: these must not read it first.
+        // Capture can decode JSON before this provider runs. Exclude later global normalization;
+        // the middleware body limit is defense in depth after the required upstream body limit.
+        $paths = [];
+        $customPaths = $this->app->make(Repository::class)->get('videxo.webhook.raw_body_paths', []);
+        foreach (is_array($customPaths) ? $customPaths : [] as $customPath) {
+            if (is_string($customPath) && trim($customPath, '/') !== '') {
+                $paths[] = trim($customPath, '/');
+            }
+        }
         $path = Config::from($this->app)->string('webhook.path');
         if ($path !== null && trim($path, '/') !== '') {
-            $isWebhook = static fn (Request $request): bool => $request->is(trim($path, '/'));
+            $paths[] = trim($path, '/');
+        }
+        if ($paths !== []) {
+            $isWebhook = static fn (Request $request): bool => $request->is(...$paths);
             if (class_exists(TrimStrings::class)) {
                 TrimStrings::skipWhen($isWebhook);
                 ConvertEmptyStringsToNull::skipWhen($isWebhook);

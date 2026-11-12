@@ -5,6 +5,15 @@ declare(strict_types=1);
 namespace Videxo\Laravel\Tests;
 
 use Illuminate\Events\CallQueuedListener;
+use Illuminate\Foundation\Http\Kernel;
+use Illuminate\Foundation\Http\Middleware\ConvertEmptyStringsToNull;
+use Illuminate\Foundation\Http\Middleware\TrimStrings;
+use Illuminate\Http\Request;
+use PHPUnit\Framework\Attributes\DataProvider;
+use Symfony\Component\HttpFoundation\InputBag;
+use Symfony\Component\HttpFoundation\Request as SymfonyRequest;
+use Videxo\Laravel\Http\Controllers\WebhookController;
+use Videxo\Laravel\Http\Middleware\VerifyWebhookSignature;
 use Illuminate\Support\Facades\Event;
 use Illuminate\Support\Facades\Queue;
 use Illuminate\Support\Facades\Route;
@@ -161,5 +170,142 @@ final class WebhookRouteTest extends TestCase
             $event = unserialize(serialize($job->data[0] ?? null));
             return $event instanceof JobSucceeded && $event->job->state === JobState::Succeeded && $event->event->id === 'msg_2k9x0c2mfq8w1n7r5t4b6v2z';
         });
+    }
+    /** @param \Illuminate\Foundation\Application $app */
+    protected function useCustomRoute($app): void
+    {
+        $app['config']->set('videxo.webhook.path', null);
+        $app['config']->set('videxo.webhook.raw_body_paths', ['hooks/custom-videxo']);
+        $app['config']->set('videxo.webhook.max_body_bytes', 32);
+    }
+
+    /** @return iterable<string, array{bool}> */
+    public static function contentLengths(): iterable
+    {
+        yield 'known length' => [true];
+        yield 'unknown length' => [false];
+    }
+
+    #[DefineEnvironment('useCustomRoute')]
+    #[DataProvider('contentLengths')]
+    public function testCustomRouteSkipsGlobalNormalizationBeforeItsBodyCheck(bool $knownLength): void
+    {
+        Route::post('/hooks/custom-videxo', WebhookController::class)->middleware(VerifyWebhookSignature::class);
+        Event::fake([WebhookReceived::class]);
+        $payload = '{"value":"' . str_repeat('x', 64) . '"}';
+        $server = ['REQUEST_METHOD' => 'POST', 'REQUEST_URI' => '/hooks/custom-videxo', 'CONTENT_TYPE' => 'application/json'];
+        if ($knownLength) {
+            $server['CONTENT_LENGTH'] = (string) strlen($payload);
+        }
+        $request = new class ([], [], [], [], [], $server, $payload) extends Request {
+            public bool $decoded = false;
+
+            /**
+             * @param string|null $key
+             * @param mixed $default
+             * @return ($key is null ? InputBag<string|int|float|bool|null> : mixed)
+             */
+            public function json($key = null, $default = null)
+            {
+                $this->decoded = true;
+                return parent::json($key, $default);
+            }
+        };
+        $kernel = $this->application()->make(\Illuminate\Contracts\Http\Kernel::class);
+        self::assertInstanceOf(Kernel::class, $kernel);
+        $global = $kernel->getGlobalMiddleware();
+        $trim = array_search(TrimStrings::class, $global, true);
+        $empty = array_search(ConvertEmptyStringsToNull::class, $global, true);
+        self::assertIsInt($trim);
+        self::assertIsInt($empty);
+        self::assertLessThan($empty, $trim);
+        self::assertSame(413, $kernel->handle($request)->getStatusCode());
+        self::assertFalse($request->decoded, 'Global normalization decoded an unauthenticated body before its size check.');
+        Event::assertNotDispatched(WebhookReceived::class);
+    }
+
+    #[DefineEnvironment('useCustomRoute')]
+    public function testCustomWebhookExclusionsKeepOtherRoutesNormalized(): void
+    {
+        Route::post('/normalize', static fn (Request $request) => response()->json($request->only(['trim', 'empty'])));
+        $this->postJson('/normalize', ['trim' => ' value ', 'empty' => ''])->assertExactJson(['trim' => 'value', 'empty' => null]);
+    }
+    /** @param \Illuminate\Foundation\Application $app */
+    protected function useCapturedCustomRoute($app): void
+    {
+        $app['config']->set('videxo.webhook.path', null);
+        $app['config']->set('videxo.webhook.raw_body_paths', ['hooks/captured-videxo']);
+    }
+
+    /** @return iterable<string, array{string}> */
+    public static function captureFramings(): iterable
+    {
+        yield 'Content-Length' => ['known'];
+        yield 'unknown length' => ['unknown'];
+        yield 'chunked' => ['chunked'];
+    }
+
+    #[DataProvider('captureFramings')]
+    public function testAutomaticWebhookCaptureDecodesBeforeThePackageLimit(string $framing): void
+    {
+        $this->assertCapturePrecedesPackageLimit('/webhooks/videxo', $framing);
+    }
+
+    #[DefineEnvironment('useCapturedCustomRoute')]
+    #[DataProvider('captureFramings')]
+    public function testCustomWebhookCaptureDecodesBeforeThePackageLimit(string $framing): void
+    {
+        Route::post('/hooks/captured-videxo', WebhookController::class)->middleware(VerifyWebhookSignature::class);
+        $this->assertCapturePrecedesPackageLimit('/hooks/captured-videxo', $framing);
+    }
+
+    /**
+     * Qualifies framework capture only; no upstream server is exercised or qualified here.
+     * Framing cases supply capture metadata, not real on-wire chunked requests.
+     * The earlier direct-kernel tests qualify the later global-normalization exclusions.
+     */
+    private function assertCapturePrecedesPackageLimit(string $path, string $framing): void
+    {
+        $limit = config('videxo.webhook.max_body_bytes');
+        self::assertSame(2 * 1024 * 1024, $limit);
+        $prefix = '{"value":"';
+        $suffix = '"}';
+        $value = str_repeat('x', $limit + 1 - strlen($prefix . $suffix));
+        $payload = $prefix . $value . $suffix;
+        $server = ['CONTENT_TYPE' => 'application/json'];
+        if ($framing === 'known') {
+            $server['CONTENT_LENGTH'] = (string) strlen($payload);
+        } elseif ($framing === 'chunked') {
+            $server['HTTP_TRANSFER_ENCODING'] = 'chunked';
+        }
+        $base = SymfonyRequest::create($path, 'POST', [], [], [], $server, $payload);
+        if ($framing !== 'known') {
+            $base->headers->remove('Content-Length');
+            $base->server->remove('CONTENT_LENGTH');
+        }
+        $prototype = new class extends Request {
+            public int $jsonReads = 0;
+
+            /**
+             * @param string|null $key
+             * @param mixed $default
+             * @return ($key is null ? InputBag<string|int|float|bool|null> : mixed)
+             */
+            public function json($key = null, $default = null)
+            {
+                $this->jsonReads++;
+                return parent::json($key, $default);
+            }
+        };
+        // capture() delegates to this actual framework method before calling the HTTP kernel.
+        $request = $prototype::createFromBase($base);
+        self::assertSame($limit + 1, strlen($payload));
+        self::assertSame(1, $request->jsonReads, 'Framework capture already decoded this oversized, unauthenticated JSON.');
+        self::assertSame($value, $request->request->get('value'));
+        Event::fake([WebhookReceived::class]);
+        $kernel = $this->application()->make(\Illuminate\Contracts\Http\Kernel::class);
+        self::assertSame(413, $kernel->handle($request)->getStatusCode());
+        self::assertSame(1, $request->jsonReads, 'The exclusions prevent later normalization, not the earlier capture.');
+        Event::assertNotDispatched(WebhookReceived::class);
     }
 }

@@ -66,6 +66,17 @@ final class TranscodeOrder implements ShouldQueue
 
 ## Receive webhooks
 
+Both the automatic route and every custom webhook route require a trusted HTTP server or reverse
+proxy to enforce a body limit before forwarding the request to PHP/Laravel. With the default
+`webhook.max_body_bytes`, reject bodies over **2 MiB (2,097,152 bytes)**. Enforce actual received
+bytes, including unknown-length and chunked requests; checking `Content-Length` alone is
+insufficient. If you change the package limit, set the upstream limit to the same value or lower.
+
+Laravel's `Request::capture()` can decode JSON through `createFromBase()` before the HTTP kernel
+and service providers run. The package's middleware limit is defense in depth after capture; it
+cannot prevent capture's earlier allocation. Verify that oversized requests are rejected upstream
+before they reach Laravel, for both automatic and custom paths and each of these body framings.
+
 The package registers `POST /webhooks/videxo`. Set that URL (your app's public `https` address plus
 the path) as the endpoint on the dashboard's **Webhooks** page, or as a job's `webhook_url`. The route
 has no session or CSRF check: the signature authenticates it. It answers:
@@ -74,7 +85,7 @@ has no session or CSRF check: the signature authenticates it. It answers:
 |---|---|
 | 204 | The delivery is verified and its events were dispatched. |
 | 400 | The signature, the timestamp or the body did not pass. No event is dispatched. |
-| 413 | The body is over 2 MiB. It is refused before the check. |
+| 413 | The package body limit is exceeded after capture, before signature verification. |
 
 Listen to the events:
 
@@ -107,9 +118,11 @@ in the same transaction as your update, and skip one you already handled.
 
 ### Your own route
 
-Set `VIDEXO_WEBHOOK_PATH` to another path. To register the route yourself, set
-`'path' => null` in `config/videxo.php` and use the middleware and the controller, outside the `web`
-group:
+Set `VIDEXO_WEBHOOK_PATH` to another path. To register the route yourself, set `webhook.path`
+to `null` and `webhook.raw_body_paths` to `['hooks/videxo']` in `config/videxo.php`. The listed
+custom path skips Laravel's later global `TrimStrings` and `ConvertEmptyStringsToNull`
+normalization. These exclusions do not stop JSON decoding during capture and do not replace the
+required upstream body limit above. Keep the route outside the `web` group:
 
 ```php
 use Videxo\Laravel\Http\Controllers\WebhookController;
@@ -132,8 +145,9 @@ The middleware also works on a controller of your own: it puts the verified even
 | `timeout` | `VIDEXO_TIMEOUT` | `60` seconds per attempt |
 | `webhook.secret` | `VIDEXO_WEBHOOK_SECRET` | none; a delivery without it is a server error |
 | `webhook.path` | `VIDEXO_WEBHOOK_PATH` | `webhooks/videxo` |
+| `webhook.raw_body_paths` | | `[]`; paths of manually registered webhook routes |
 | `webhook.middleware` | | none |
-| `webhook.max_body_bytes` | | 2 MiB |
+| `webhook.max_body_bytes` | | 2 MiB (2,097,152 bytes); defense in depth after capture |
 | `webhook.tolerance` | | `300` seconds |
 
 ## License

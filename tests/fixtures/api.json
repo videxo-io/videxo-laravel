@@ -29,7 +29,7 @@
             "video": {
               "codec": "h264",
               "crf": 23,
-              "encoder_preset": "veryfast",
+              "speed": "standard",
               "pixel_format": "yuv420p",
               "faststart": true
             },
@@ -40,14 +40,27 @@
           }
         ]
       },
-      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
       "input_files": {
         "in_source": "https://videxo.io/samples/talk.mp4"
       },
       "output_files": {
         "out_video": "talk-720p.mp4"
       },
-      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4",
+      "steps": [
+        {
+          "tool": "ffmpeg",
+          "inputs": [
+            "source"
+          ],
+          "outputs": [
+            "video"
+          ],
+          "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4"
+        }
+      ],
+      "notices": [],
       "webhook_url": null,
       "metadata": {
         "order": "1234"
@@ -88,7 +101,7 @@
             "video": {
               "codec": "h264",
               "crf": 23,
-              "encoder_preset": "veryfast",
+              "speed": "standard",
               "pixel_format": "yuv420p",
               "faststart": true
             },
@@ -99,14 +112,27 @@
           }
         ]
       },
-      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
       "input_files": {
         "in_source": "https://videxo.io/samples/talk.mp4"
       },
       "output_files": {
         "out_video": "talk-720p.mp4"
       },
-      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4",
+      "steps": [
+        {
+          "tool": "ffmpeg",
+          "inputs": [
+            "source"
+          ],
+          "outputs": [
+            "video"
+          ],
+          "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4"
+        }
+      ],
+      "notices": [],
       "webhook_url": null,
       "metadata": {
         "order": "1234"
@@ -147,7 +173,7 @@
             "video": {
               "codec": "h264",
               "crf": 23,
-              "encoder_preset": "veryfast",
+              "speed": "standard",
               "pixel_format": "yuv420p",
               "faststart": true
             },
@@ -158,14 +184,27 @@
           }
         ]
       },
-      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
       "input_files": {
         "in_source": "https://videxo.io/samples/talk.mp4"
       },
       "output_files": {
         "out_video": "talk-720p.mp4"
       },
-      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4",
+      "steps": [
+        {
+          "tool": "ffmpeg",
+          "inputs": [
+            "source"
+          ],
+          "outputs": [
+            "video"
+          ],
+          "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4"
+        }
+      ],
+      "notices": [],
       "webhook_url": null,
       "metadata": {
         "order": "1234"
@@ -190,7 +229,30 @@
         "seconds": 61,
         "input_bytes": 1200000000,
         "output_bytes": 300000000,
-        "credits": 106
+        "credits": 52.5,
+        "bill": {
+          "lines": [
+            {
+              "kind": "video",
+              "seconds": 300,
+              "per_minute": 6,
+              "multiplier": 1.25,
+              "credits": 37.5
+            }
+          ],
+          "data": {
+            "input_bytes": 1200000000,
+            "output_bytes": 300000000,
+            "credits": 15
+          },
+          "processing": {
+            "seconds": 61,
+            "included_seconds": 900,
+            "per_minute": 10,
+            "credits": 0
+          },
+          "minimum": 1
+        }
       },
       "created_at": "2026-11-04T12:00:00.000Z",
       "started_at": "2026-11-04T12:00:04.000Z",
@@ -224,7 +286,7 @@
             "video": {
               "codec": "h264",
               "crf": 23,
-              "encoder_preset": "veryfast",
+              "speed": "standard",
               "pixel_format": "yuv420p",
               "faststart": true
             },
@@ -235,14 +297,27 @@
           }
         ]
       },
-      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
       "input_files": {
         "in_source": "https://videxo.io/samples/talk.mp4"
       },
       "output_files": {
         "out_video": "talk-720p.mp4"
       },
-      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4",
+      "steps": [
+        {
+          "tool": "ffmpeg",
+          "inputs": [
+            "source"
+          ],
+          "outputs": [
+            "video"
+          ],
+          "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4"
+        }
+      ],
+      "notices": [],
       "webhook_url": null,
       "metadata": {
         "order": "1234"
@@ -260,7 +335,8 @@
         "seconds": 0,
         "input_bytes": 0,
         "output_bytes": 0,
-        "credits": 0
+        "credits": 0,
+        "bill": null
       },
       "created_at": "2026-11-04T12:00:00.000Z",
       "started_at": "2026-11-04T12:00:04.000Z",
@@ -295,7 +371,7 @@
           "video": {
             "codec": "h264",
             "crf": 23,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -322,7 +398,7 @@
         }
       ]
     },
-    "command": "-i {{in_talk}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_web}} -map 0:v:0 -vf \"thumbnail=300,scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -frames:v 1 -q:v 2 {{out_poster}}",
+    "command": "-i {{in_talk}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_web}} -map 0:v:0 -vf \"thumbnail=300,scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -frames:v 1 -q:v 2 {{out_poster}}",
     "input_files": {
       "in_talk": "https://videxo.io/samples/talk.mp4"
     },
@@ -330,7 +406,21 @@
       "out_web": "web.mp4",
       "out_poster": "poster.jpg"
     },
-    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart web.mp4 -map 0:v:0 -vf 'thumbnail=300,scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -frames:v 1 -q:v 2 poster.jpg",
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast web.mp4 -map 0:v:0 -vf 'thumbnail=300,scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -frames:v 1 -q:v 2 poster.jpg",
+    "steps": [
+      {
+        "tool": "ffmpeg",
+        "inputs": [
+          "talk"
+        ],
+        "outputs": [
+          "web",
+          "poster"
+        ],
+        "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast web.mp4 -map 0:v:0 -vf 'thumbnail=300,scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -frames:v 1 -q:v 2 poster.jpg"
+      }
+    ],
+    "notices": [],
     "webhook_url": null,
     "metadata": {
       "order": "1234"
@@ -356,7 +446,20 @@
     "output_files": {
       "out_main": "talk-720p.mp4"
     },
-    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -vf scale=-2:720 -c:v libx264 -crf 23 -c:a copy talk-720p.mp4",
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -vf scale=-2:720 -c:v libx264 -crf 23 -c:a copy -preset:v veryfast talk-720p.mp4",
+    "steps": [
+      {
+        "tool": "ffmpeg",
+        "inputs": [
+          "video"
+        ],
+        "outputs": [
+          "main"
+        ],
+        "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -vf scale=-2:720 -c:v libx264 -crf 23 -c:a copy -preset:v veryfast talk-720p.mp4"
+      }
+    ],
+    "notices": [],
     "webhook_url": null,
     "metadata": {
       "order": "1234"
@@ -388,7 +491,7 @@
           "video": {
             "codec": "h264",
             "crf": 23,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -404,14 +507,27 @@
         }
       ]
     },
-    "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+    "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
     "input_files": {
       "in_source": "https://videxo.io/samples/talk.mp4"
     },
     "output_files": {
       "out_video": "video.mp4"
     },
-    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart video.mp4"
+    "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast video.mp4",
+    "steps": [
+      {
+        "tool": "ffmpeg",
+        "inputs": [
+          "source"
+        ],
+        "outputs": [
+          "video"
+        ],
+        "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast video.mp4"
+      }
+    ],
+    "notices": []
   },
   "presets": {
     "data": [
@@ -431,7 +547,7 @@
           "video": {
             "codec": "h264",
             "crf": 23,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -457,7 +573,7 @@
           "video": {
             "codec": "h264",
             "crf": 22,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -484,7 +600,7 @@
           "video": {
             "codec": "h264",
             "crf": 23,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -511,7 +627,7 @@
           "video": {
             "codec": "h264",
             "crf": 23,
-            "encoder_preset": "veryfast",
+            "speed": "standard",
             "pixel_format": "yuv420p",
             "faststart": true
           },
@@ -853,7 +969,7 @@
             "video": {
               "codec": "h264",
               "crf": 23,
-              "encoder_preset": "veryfast",
+              "speed": "standard",
               "pixel_format": "yuv420p",
               "faststart": true
             },
@@ -864,14 +980,27 @@
           }
         ]
       },
-      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
+      "command": "-i {{in_source}} -map 0:v:0 -vf \"scale='min(iw,1280)':'min(ih,720)':force_original_aspect_ratio=decrease:force_divisible_by=2\" -c:v libx264 -crf 23 -pix_fmt yuv420p -map 0:a:0? -c:a aac -b:a 128k -movflags +faststart {{out_video}}",
       "input_files": {
         "in_source": "https://videxo.io/samples/talk.mp4"
       },
       "output_files": {
         "out_video": "talk-720p.mp4"
       },
-      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -preset veryfast -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart talk-720p.mp4",
+      "ffmpeg_command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4",
+      "steps": [
+        {
+          "tool": "ffmpeg",
+          "inputs": [
+            "source"
+          ],
+          "outputs": [
+            "video"
+          ],
+          "command": "ffmpeg -i https://videxo.io/samples/talk.mp4 -map 0:v:0 -vf 'scale='\\''min(iw,1280)'\\'':'\\''min(ih,720)'\\'':force_original_aspect_ratio=decrease:force_divisible_by=2' -c:v libx264 -crf 23 -pix_fmt yuv420p -map '0:a:0?' -c:a aac -b:a 128k -movflags +faststart -preset:v veryfast talk-720p.mp4"
+        }
+      ],
+      "notices": [],
       "webhook_url": null,
       "metadata": {
         "order": "1234"
@@ -896,7 +1025,30 @@
         "seconds": 61,
         "input_bytes": 1200000000,
         "output_bytes": 300000000,
-        "credits": 106
+        "credits": 52.5,
+        "bill": {
+          "lines": [
+            {
+              "kind": "video",
+              "seconds": 300,
+              "per_minute": 6,
+              "multiplier": 1.25,
+              "credits": 37.5
+            }
+          ],
+          "data": {
+            "input_bytes": 1200000000,
+            "output_bytes": 300000000,
+            "credits": 15
+          },
+          "processing": {
+            "seconds": 61,
+            "included_seconds": 900,
+            "per_minute": 10,
+            "credits": 0
+          },
+          "minimum": 1
+        }
       },
       "created_at": "2026-11-04T12:00:00.000Z",
       "started_at": "2026-11-04T12:00:04.000Z",
@@ -906,7 +1058,7 @@
   "problems": {
     "authentication_failed": {
       "type": "https://videxo.io/docs/errors#authentication_failed",
-      "title": "The API key is missing, malformed, unknown, revoked or expired.",
+      "title": "The API key, client token or access token is missing, malformed, unknown, revoked or expired.",
       "status": 401,
       "detail": "The key is malformed, unknown or deleted.",
       "code": "authentication_failed",
@@ -991,20 +1143,11 @@
       "retryable": false,
       "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
     },
-    "usage_cap_reached": {
-      "type": "https://videxo.io/docs/errors#usage_cap_reached",
-      "title": "The plan's overage cap for this period is reached.",
-      "status": 402,
-      "detail": "The plan's overage cap for this period is reached.",
-      "code": "usage_cap_reached",
-      "retryable": false,
-      "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
-    },
     "out_of_credits": {
       "type": "https://videxo.io/docs/errors#out_of_credits",
-      "title": "The prepaid credit balance is at zero.",
+      "title": "The account has no credits left for this job.",
       "status": 402,
-      "detail": "The prepaid credit balance is at zero.",
+      "detail": "The account has no credits left for this job.",
       "code": "out_of_credits",
       "retryable": false,
       "request_id": "req_7h2m4x9q0c3v8k1n5r6t2b4z"
