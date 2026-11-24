@@ -15,11 +15,16 @@ use Illuminate\Support\Facades\Facade;
  * @method static \Videxo\Model\Job gif(array<array-key, mixed> $body, ?string $idempotencyKey = null)
  * @method static \Videxo\Model\Job audio(array<array-key, mixed> $body, ?string $idempotencyKey = null)
  * @method static \Videxo\Model\Job concat(array<array-key, mixed> $body, ?string $idempotencyKey = null)
+ * @method static \Videxo\Model\Job adaptive(array<array-key, mixed> $body, ?string $idempotencyKey = null)
+ * @method static \Videxo\Model\Job detectSilence(array<array-key, mixed> $body, ?string $idempotencyKey = null)
+ * @method static \Videxo\Model\Job removeSilence(array<array-key, mixed> $body, ?string $idempotencyKey = null)
+ * @method static \Videxo\Model\Job tts(array<array-key, mixed> $body, ?string $idempotencyKey = null)
  * @method static \Videxo\Resource\Jobs jobs()
  * @method static \Videxo\Resource\Uploads uploads()
  * @method static \Videxo\Resource\Outputs outputs()
  * @method static \Videxo\Resource\Presets presets()
  * @method static \Videxo\Resource\Fonts fonts()
+ * @method static \Videxo\Resource\Voices voices()
  *
  * @see \Videxo\Videxo
  */

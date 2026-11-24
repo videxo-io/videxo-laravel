@@ -32,7 +32,7 @@ $url = Videxo::outputs()->url($done->id, 'video');
 
 Or inject `Videxo\Videxo`, the same client. The
 [PHP SDK's docs](https://videxo.io/docs/sdk/php) cover every call, its typed answers and its
-exceptions; `jobs`, `uploads`, `outputs`, `presets` and `fonts` are methods on the facade.
+exceptions; `jobs`, `uploads`, `outputs`, `presets`, `fonts` and `voices` are methods on the facade.
 
 Requests go through Laravel's Http client, so `Http::fake()` and `Http::preventStrayRequests()` cover
 them in your tests. Set `VIDEXO_HTTP_CLIENT=guzzle` to send them with a plain Guzzle client instead.

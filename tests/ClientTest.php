@@ -50,6 +50,29 @@ final class ClientTest extends TestCase
         Http::assertSentCount(2);
     }
 
+    public function testSpeechAndPrivateVoicesWorkThroughTheFacade(): void
+    {
+        Http::preventStrayRequests();
+        $voice = ['id' => 'voice_0123456789abcdefghijklmn', 'version_id' => 'vver_0123456789abcdefghijklmn', 'locale' => 'pl', 'state' => 'ready'];
+        Http::fake([
+            self::BASE_URL . '/v1/tts' => Http::response(self::job(), 202),
+            self::BASE_URL . '/v1/voices/*' => Http::response($voice),
+        ]);
+
+        VidexoFacade::tts(['text' => 'Dzień dobry.', 'locale' => 'pl', 'voice_id' => $voice['id']]);
+        $ready = VidexoFacade::voices()->uploadReference($voice['id'], "RIFF\x00\x01");
+
+        self::assertSame('ready', $ready->state);
+        Http::assertSent(static fn (Request $request) => $request->method() === 'POST'
+            && $request->url() === self::BASE_URL . '/v1/tts'
+            && $request->data() === ['text' => 'Dzień dobry.', 'locale' => 'pl', 'voice_id' => 'voice_0123456789abcdefghijklmn']);
+        // The recording's bytes as they are, not JSON.
+        Http::assertSent(static fn (Request $request) => $request->method() === 'PUT'
+            && $request->url() === self::BASE_URL . '/v1/voices/voice_0123456789abcdefghijklmn/reference'
+            && $request->header('Content-Type') === ['audio/wav']
+            && $request->body() === "RIFF\x00\x01");
+    }
+
     public function testTheDownloadLinkIsReadFromTheRedirect(): void
     {
         Http::fake([self::BASE_URL . '/v1/jobs/job_1/outputs/out_video' => Http::response('', 302, ['Location' => 'https://files.videxo.test/x?s=1'])]);
